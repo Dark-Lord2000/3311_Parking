@@ -1,5 +1,6 @@
 package Parking;
 import Users.*;
+import Utilities.Payment;
 import Parking.ParkingSpace;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ public class Booking {
 	private ParkingSpace spot;
 	private double bill;
 	private String licensePlate;
+	private boolean paid;
 	
 	/**
 	 * The constructor
@@ -30,6 +32,7 @@ public class Booking {
 			this.spot = spot;
 			this.licensePlate = licensePlate;
 			this.bill = this.calculateBill();
+			this.paid = false;
 			client.setBooking(this);
 		}
 		else {
@@ -40,16 +43,16 @@ public class Booking {
 	private double calculateBill() {
 		double value = 0;
 		
-		if (this.client.getType().equalsIgnoreCase("visitor")) {
+		if (this.client instanceof Visitor) {
 			value = 15.0;
 		}
-		else if (this.client.getType().equalsIgnoreCase("non-faculty staff")) {
+		else if (this.client instanceof NonFacultyStaff) {
 			value = 10.0;
 		}
-		else if (this.client.getType().equalsIgnoreCase("student")) {
+		else if (this.client instanceof Student) {
 			value = 5.0;
 		}
-		else if (this.client.getType().equalsIgnoreCase("faculty")) {
+		else if (this.client instanceof Faculty) {
 			value = 8.0;
 		}
 		
@@ -88,6 +91,10 @@ public class Booking {
 		return this.endingDate;
 	}
 	
+	public double getBill() {
+		return this.bill;
+	}
+	
 	/**
 	 * This method returns the parking space associated with this booking time
 	 * @return returns the ParkingSpace object associated with this booking time
@@ -106,6 +113,10 @@ public class Booking {
 	 */
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public void setBill(double money) {
+		this.bill = money;
 	}
 	
 	/**
@@ -130,6 +141,10 @@ public class Booking {
 	 */
 	public void setParkingSpace (ParkingSpace spot) {
 		this.spot = spot;
+	}
+	
+	public void setPaid(boolean paid) {
+		this.paid = paid;
 	}
 	
 	/*
@@ -177,6 +192,10 @@ public class Booking {
 		return currentDate.getTime();
 	}
 	
+	public boolean getPaid() {
+		return this.paid;
+	}
+	
 	
 	/**
 	 * This method checks if the start time and end time is valid for this booking
@@ -209,6 +228,7 @@ public class Booking {
 		}
 		booking.setStartingDate(newStartTime);
 		booking.setEndingDate(newEndTime);
+		booking.calculateBill();
 		return true;
 	}
 	
@@ -222,5 +242,31 @@ public class Booking {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
 	   return dateFormat.format(this.endingDate);
+	}
+
+
+	public boolean pay() {
+        double value = 0;
+		
+		if (this.client instanceof Visitor) {
+			value = 15.0;
+		}
+		else if (this.client instanceof NonFacultyStaff) {
+			value = 10.0;
+		}
+		else if (this.client instanceof Student) {
+			value = 5.0;
+		}
+		else if (this.client instanceof Faculty) {
+			value = 8.0;
+		}
+		
+		if(Math.random() < 0.5) {
+			this.bill -= value;
+		}
+		
+		Payment pay = new Payment(null, this.bill);
+		return pay.makePayment(this);
+		
 	}
 }

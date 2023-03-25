@@ -52,7 +52,7 @@ public class SignUpConfirmed extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(139, 211, 192, 16);
+		lblNewLabel_1.setBounds(125, 6, 192, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnEditBooking = new JButton("Edit Booking");
@@ -94,7 +94,7 @@ public class SignUpConfirmed extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		btnSignOut.setBounds(169, 229, 117, 29);
+		btnSignOut.setBounds(169, 239, 117, 29);
 		contentPane.add(btnSignOut);
 		
 		JButton btnViewBooking = new JButton("View Your Booking");
@@ -118,6 +118,17 @@ public class SignUpConfirmed extends JFrame {
 		});
 		btnCancelBooking.setBounds(139, 164, 171, 35);
 		contentPane.add(btnCancelBooking);
+		
+		JButton btnPaymentInquiries = new JButton("Payment Inquiries");
+		btnPaymentInquiries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				paymentInquiries pi = paymentInquiries.getInstance();
+				pi.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		btnPaymentInquiries.setBounds(139, 202, 171, 35);
+		contentPane.add(btnPaymentInquiries);
 		
 	}
 	

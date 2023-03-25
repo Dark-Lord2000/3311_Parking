@@ -8,6 +8,10 @@ public class Client extends User {
 	
 	//Class variables
 	private Booking booking;
+	private double balance;
+	private String cardNumber;
+	private String CCV;
+	private String expiryDate;
 
 	/**
 	 * Constructor
@@ -19,6 +23,7 @@ public class Client extends User {
 	public Client(String email, String password, Booking booking) {
 		super(email, password, "client");
 		this.booking = booking;
+		this.balance = 0.0;
 	}
 	
 	/*
@@ -33,6 +38,18 @@ public class Client extends User {
 		return this.booking;
 	}
 	
+	public double getBalance() {
+		return this.balance;
+	}
+	
+	public String getCardNumber() {
+		if (this.cardNumber == null) {
+			return "";
+		}
+		return this.cardNumber;
+	}
+	
+	
 	/*
 	 * Set methods
 	 */
@@ -45,9 +62,33 @@ public class Client extends User {
 		this.booking = booking;
 	}
 	
+	public void setCCV(String CCV) {
+		this.CCV = CCV;
+	}
+	
+	public void setCardNumber(String number) {
+		this.cardNumber = number;
+	}
+	
+	public void setExpiryDate(String exp) {
+		this.expiryDate = exp;
+	}
+	
+	public void addFunds(double money) {
+		this.balance += money;
+	}
+	
+	public void takeFunds(double money) {
+		this.balance -= money;
+	}
+	
 	public void cancelBooking() {
 		this.booking.getParkingSpace().setBooked(false);
 		this.booking = null;
+	}
+	
+	public boolean payBooking() {
+		return this.booking.pay();
 	}
 	
 	/**

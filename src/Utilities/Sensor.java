@@ -12,7 +12,7 @@ public class Sensor {
 	 * @return returns a String associated with the cars license plate
 	 */
 	public String getLicensePlate() {
-		return null;
+		return "";
 	}
 	
 	/**
@@ -20,7 +20,7 @@ public class Sensor {
 	 * @return returns a String of information about the car
 	 */
 	public String getInfo() {
-		return null;
+		return "";
 	}
 	
 	/**
@@ -30,5 +30,6 @@ public class Sensor {
 	public boolean isOccuipied() {
 		return false;
 	}
+	
 
 }

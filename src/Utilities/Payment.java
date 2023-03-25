@@ -5,9 +5,7 @@ import Users.Client;
 public class Payment {
 	//Class variables
 	private String payType;
-	private Booking booking;
 	private double totalCost;
-	private double deposit;
 	
 	/**
 	 * Constructor
@@ -16,11 +14,9 @@ public class Payment {
 	 * @param totalCost is a double corresponding to the total cost
 	 * @param deposit is a double corresponding to the deposit
 	 */
-	public Payment(String payType, Booking booking, double totalCost, double deposit) {
+	public Payment(String payType, double totalCost) {
 		this.payType = payType;
-		this.booking = booking;
 		this.totalCost = totalCost;
-		this.deposit = deposit;
 	}
 	
 	/*
@@ -35,23 +31,6 @@ public class Payment {
 		return this.totalCost;
 	}
 	
-	/**
-	 * This method returns the deposit for the payment
-	 * @return returns a double corresponding to the deposit
-	 */
-	public double getDeposit() {
-		return this.deposit;
-	}
-	
-	//One set method
-	
-	/**
-	 * This method sets the deposit for this payment
-	 * @param deposit is a double that corresponds with this payment
-	 */
-	public void setDepoit(double deposit) {
-		this.deposit = deposit;
-	}
 	
 	/*
 	 * Useful methods
@@ -62,8 +41,15 @@ public class Payment {
 	 * @param string
 	 * @return
 	 */
-	public String makePayemnt(String string) {
-		return null;
+	public boolean makePayment(Booking book) {
+		if((book.getClient().getBalance() >= book.getBill()) && !book.getPaid()) {
+			book.getClient().takeFunds(book.getBill());
+			book.setPaid(true);
+			book.setBill(0.00);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**

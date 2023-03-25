@@ -156,8 +156,8 @@ public class editBookingScreen extends JFrame {
 					//Create starting date
 					Calendar calStart = Calendar.getInstance();
 					int startHour = (int) comboBoxStartHour.getSelectedItem();
-					int startDay = (int) comboBoxStartDay.getSelectedItem();
-					int startMonth = (int) comboBoxStartMonth.getSelectedItem();
+					int startDay = (int) comboBoxStartDay.getSelectedItem() - 1;
+					int startMonth = (int) comboBoxStartMonth.getSelectedItem() - 1;
 					int startMinute = (int) comboBoxStartMinute.getSelectedItem();
 					calStart.set(Calendar.YEAR, 2023);
 					calStart.set(Calendar.MONTH, startMonth);
@@ -169,8 +169,8 @@ public class editBookingScreen extends JFrame {
 					//Create ending date
 					Calendar calEnd = Calendar.getInstance();
 					int endHour = (int) comboBoxEndHour.getSelectedItem();
-					int endDay = (int) comboBoxEndDay.getSelectedItem();
-					int endMonth = (int) comboBoxEndMonth.getSelectedItem();
+					int endDay = (int) comboBoxEndDay.getSelectedItem() - 1;
+					int endMonth = (int) comboBoxEndMonth.getSelectedItem() - 1;
 					int endMinute = (int) comboBoxEndMinute.getSelectedItem();
 					calEnd.set(Calendar.YEAR, 2023);
 					calEnd.set(Calendar.MONTH, endMonth);
@@ -205,8 +205,8 @@ public class editBookingScreen extends JFrame {
 					//Create ending date
 					Calendar calEnd = Calendar.getInstance();
 					int endHour = (int) comboBoxEndHour.getSelectedItem();
-					int endDay = (int) comboBoxEndDay.getSelectedItem();
-					int endMonth = (int) comboBoxEndMonth.getSelectedItem();
+					int endDay = (int) comboBoxEndDay.getSelectedItem() - 1;
+					int endMonth = (int) comboBoxEndMonth.getSelectedItem() - 1;
 					int endMinute = (int) comboBoxEndMinute.getSelectedItem();
 					calEnd.set(Calendar.YEAR, 2023);
 					calEnd.set(Calendar.MONTH, endMonth);
