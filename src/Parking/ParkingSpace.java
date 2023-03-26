@@ -2,107 +2,104 @@ package Parking;
 import Utilities.Sensor;
 
 public class ParkingSpace {
-	
-	//Class variables
-	private int spaceNum;
-	private ParkingLot inLot;
-	private boolean enabled;
-	private Sensor sensor;
-	private boolean booked;
-	private int location;
-	
-	/**
-	 * Constructor
-	 * @param spaceNum is an int corresponding to the parking space number
-	 * @param inLot is a ParkingLot object which this ParkingSpace is in
-	 * @param sensor is a Sensor object corresponding to the parking spaces sensor 
-	 * @param location is a String corresponding to the parking location
-	 */
-	public ParkingSpace(int spaceNum, ParkingLot inLot, Sensor sensor, int location) {
-		this.spaceNum = spaceNum;
-		this.inLot = inLot;
-		this.sensor = sensor;
-		this.location = location;
-		this.booked = false;
-		this.enabled = true;
-	}
-	
-	/*
-	 * Get methods
-	 */
-	
-	/**
-	 * This method returns the space number of this parking space
-	 * @return returns an int that corresponds to this parking space
-	 */
-	public int getSpaceNumber() {
-		return this.spaceNum;
-	}
-	
-	/**
-	 * This method returns the Parking Lot that this parking space in in
-	 * @return returns a ParkingLot object that corresponds to this parking space
-	 */
-	public ParkingLot getParkingLot() {
-		return this.inLot;
-	}
-	
-	/**
-	 * This method returns the sensor for this parking space
-	 * @return returns a Sensor object associated with this ParkingSpace
-	 */
-	public Sensor getSensor() {
-		return this.sensor;
-	}
-	
-	/**
-	 * This method returns the location for this parking space
-	 * @return returns a String object associated with the location of this ParkingSpace
-	 */
-	public int getLocation() {
-		return this.location;
-	}
-	
-	/**
-	 * This method checks if this parking space is booked
-	 * @return returns true if this ParkingSpace is booked, false otherwise
-	 */
-	public boolean isBooked() {
-		return this.booked;
-	}
-	
-	/**
-	 * This method checks if this parking space is enabled
-	 * @return returns true if this ParkingSpace is enabled, false otherwise
-	 */
-	public boolean isEnabled() {
-		return this.enabled;
-	}
-	
-	/*
-	 * Set methods
-	 */
-	
-	/**
-	 * This method enables this parking space
-	 */
-	public void enable() {
-		this.enabled = true;
-	}
-	
-	/**
-	 * This method disables this parking space
-	 */
-	public void disable() {
-		this.enabled = false;
-	}
-	
-	/**
-	 * This method either books or unbooks this parking space
-	 * @param book is a boolean corresponding to if this parking space is booked or not
-	 */
-	public void setBooked(boolean book) {
-		this.booked = book;
-	}
-	
+    private final int spaceNum;
+    private final ParkingLot inLot;
+    private boolean enabled;
+    private final Sensor sensor;
+    private boolean booked;
+    private final int location;
+
+    // Private constructor that takes a builder object
+    private ParkingSpace(Builder builder) {
+        this.spaceNum = builder.spaceNum;
+        this.inLot = builder.inLot;
+        this.sensor = builder.sensor;
+        this.location = builder.location;
+        this.booked = builder.booked;
+        this.enabled = builder.enabled;
+    }
+
+    // Static inner Builder class
+    public static class Builder {
+        private int spaceNum;
+        private ParkingLot inLot;
+        private boolean enabled = true;
+        private Sensor sensor;
+        private boolean booked = false;
+        private int location;
+
+        // Setters that return the builder instance
+        public Builder spaceNum(int spaceNum) {
+            this.spaceNum = spaceNum;
+            return this;
+        }
+
+        public Builder inLot(ParkingLot inLot) {
+            this.inLot = inLot;
+            return this;
+        }
+
+        public Builder enabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
+        public Builder sensor(Sensor sensor) {
+            this.sensor = sensor;
+            return this;
+        }
+
+        public Builder booked(boolean booked) {
+            this.booked = booked;
+            return this;
+        }
+
+        public Builder location(int location) {
+            this.location = location;
+            return this;
+        }
+
+        // Build method that returns a new ParkingSpace instance
+        public ParkingSpace build() {
+            return new ParkingSpace(this);
+        }
+    }
+
+    // Getters for the class variables
+    public int getSpaceNumber() {
+        return this.spaceNum;
+    }
+
+    public ParkingLot getParkingLot() {
+        return this.inLot;
+    }
+
+    public Sensor getSensor() {
+        return this.sensor;
+    }
+
+    public int getLocation() {
+        return this.location;
+    }
+
+    public boolean isBooked() {
+        return this.booked;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+    
+    // enable, disable and setBooked methods are same as in the original code
+    public void enable() {
+        this.enabled = true;
+    }
+    
+    public void disable() {
+        this.enabled = false;
+    }
+    
+    public void setBooked(boolean book) {
+        this.booked = book;
+    }
 }

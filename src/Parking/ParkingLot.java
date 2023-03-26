@@ -20,7 +20,8 @@ public class ParkingLot {
 		this.spaceList = new HashMap<>();
 		this.lotNumber = totalLots;
 		for (int i=1; i<101; i++) {
-			ParkingSpace space = new ParkingSpace(i, this, new Sensor(), this.lotNumber);
+			//ParkingSpace space = new ParkingSpace(i, this, new Sensor(), this.lotNumber);
+			ParkingSpace space = new ParkingSpace.Builder().spaceNum(i).inLot(this).sensor(new Sensor()).location(this.lotNumber).build();
 			spaceList.put(space, null);
 			System1.addParkingSpace(space);
 		}

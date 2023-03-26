@@ -184,7 +184,7 @@ public class editBookingScreen extends JFrame {
 					int lotNum = Integer.parseInt(textField_LotNumber.getText());
 					
 					//Create Booking
-					if (client.getBooking().Edit(client.getBooking(), startDate, endDate)) {
+					if (client.getBooking().Edit(client.getBooking(), startDate, endDate, lotNum, spaceNum)) {
 						BookingConfirmedScreen bcs = BookingConfirmedScreen.getInstance();
 						bcs.setVisible(true);
 						frame.setVisible(false);
@@ -220,7 +220,7 @@ public class editBookingScreen extends JFrame {
 					int lotNum = Integer.parseInt(textField_LotNumber.getText());
 					
 					//Create Booking
-					if (client.getBooking().Edit(client.getBooking(), null, endDate)) {
+					if (client.getBooking().Edit(client.getBooking(), null, endDate, lotNum, spaceNum)) {
 						BookingConfirmedScreen bcs = BookingConfirmedScreen.getInstance();
 						bcs.setVisible(true);
 						frame.setVisible(false);

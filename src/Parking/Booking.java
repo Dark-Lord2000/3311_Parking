@@ -3,6 +3,10 @@ import Users.*;
 import Utilities.Payment;
 import Parking.ParkingSpace;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import App.System1;
+
 import java.text.SimpleDateFormat;
 
 public class Booking {
@@ -43,21 +47,24 @@ public class Booking {
 	private double calculateBill() {
 		double value = 0;
 		
-		if (this.client instanceof Visitor) {
+		if (this.client.getType().equalsIgnoreCase("visitor")) {
 			value = 15.0;
 		}
-		else if (this.client instanceof NonFacultyStaff) {
+		else if (this.client.getType().equalsIgnoreCase("non-faculty staff")) {
 			value = 10.0;
 		}
-		else if (this.client instanceof Student) {
+		else if (this.client.getType().equalsIgnoreCase("student")) {
 			value = 5.0;
 		}
-		else if (this.client instanceof Faculty) {
+		else if (this.client.getType().equalsIgnoreCase("faculty")) {
 			value = 8.0;
 		}
 		
 		long diffInMilliseconds = this.endingDate.getTime() - this.startingDate.getTime();
-		long diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+		//long diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+		long diffInHours = TimeUnit.MILLISECONDS.toHours(diffInMilliseconds);
+		System.out.println(diffInHours);
+		System.out.println(value);
 		
 		
 		return (value * diffInHours) + value;
@@ -140,6 +147,7 @@ public class Booking {
 	 * @param spot is the ParkingSpace object to be associated with this booking time
 	 */
 	public void setParkingSpace (ParkingSpace spot) {
+		spot.setBooked(true);
 		this.spot = spot;
 	}
 	
@@ -222,10 +230,11 @@ public class Booking {
 	 * @param newEndTime is the Date object that is the new end time
 	 * @return
 	 */
-	public boolean Edit(Booking booking, Date newStartTime, Date newEndTime) {
+	public boolean Edit(Booking booking, Date newStartTime, Date newEndTime, int lot, int space) {
 		if (!booking.validateNewTimes(newStartTime, newEndTime)) {
 			return false;
 		}
+		booking.setParkingSpace(System1.getParkingSpace(space, lot));
 		booking.setStartingDate(newStartTime);
 		booking.setEndingDate(newEndTime);
 		booking.calculateBill();
@@ -265,8 +274,17 @@ public class Booking {
 			this.bill -= value;
 		}
 		
-		Payment pay = new Payment(null, this.bill);
-		return pay.makePayment(this);
+	      if((this.client.getBalance() >= this.bill) && !this.paid) {
+	            this.client.takeFunds(this.bill);
+	            this.setPaid(true);;
+	            this.setBill(0.00);
+	            return true;
+	        }
+
+	        return false;
+		
+		//Payment pay = new Payment(null, this.bill);
+		//return pay.makePayment(this);
 		
 	}
 }

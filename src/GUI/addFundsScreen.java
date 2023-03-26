@@ -57,6 +57,11 @@ public class addFundsScreen extends JFrame {
 		lblNewLabel.setBounds(166, 30, 114, 25);
 		contentPane.add(lblNewLabel);
 		
+		String[] options = {"Credit", "Debit"};
+		JComboBox comboBox_Type = new JComboBox(options);
+		comboBox_Type.setBounds(181, 84, 228, 27);
+		contentPane.add(comboBox_Type);
+		
 		JLabel lblDisplay = new JLabel("");
 		lblDisplay.setBounds(88, 243, 268, 16);
 		contentPane.add(lblDisplay);
@@ -64,8 +69,9 @@ public class addFundsScreen extends JFrame {
 		JButton btn5 = new JButton("Add $5.00");
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String paymentType = (String) comboBox_Type.getSelectedItem();
 				Client client = (Client) System1.currentUser;
-				client.addFunds(5.00);
+				client.addFunds(5.00, paymentType);
 				lblDisplay.setText("$5.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});
@@ -76,13 +82,14 @@ public class addFundsScreen extends JFrame {
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client client = (Client) System1.currentUser;
+				String paymentType = (String) comboBox_Type.getSelectedItem();
 				String cardNumber = textField_CardNumber.getText();
 				String CCV = textField_CCV.getText();
 				String exp = textField_exp.getText();
 				client.setCardNumber(cardNumber);
 				client.setCCV(CCV);
 				client.setExpiryDate(exp);
-				client.addFunds(10.00);
+				client.addFunds(10.00, paymentType);
 				lblDisplay.setText("$10.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});
@@ -93,7 +100,8 @@ public class addFundsScreen extends JFrame {
 		btn20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client client = (Client) System1.currentUser;
-				client.addFunds(20.00);
+				String paymentType = (String) comboBox_Type.getSelectedItem();
+				client.addFunds(20.00, paymentType);
 				lblDisplay.setText("$20.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});
@@ -125,7 +133,7 @@ public class addFundsScreen extends JFrame {
 		contentPane.add(textField_CardNumber);
 		textField_CardNumber.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("CCV:");
+		JLabel lblNewLabel_3 = new JLabel("CVV:");
 		lblNewLabel_3.setBounds(34, 144, 40, 16);
 		contentPane.add(lblNewLabel_3);
 		
@@ -142,11 +150,6 @@ public class addFundsScreen extends JFrame {
 		textField_exp.setBounds(184, 164, 130, 26);
 		contentPane.add(textField_exp);
 		textField_exp.setColumns(10);
-		
-		String[] options = {"Visa Debit", "Mastercard", "Visa Credit" };
-		JComboBox comboBox_Type = new JComboBox();
-		comboBox_Type.setBounds(181, 84, 228, 27);
-		contentPane.add(comboBox_Type);
 		
 	}
 	

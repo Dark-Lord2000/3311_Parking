@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import Users.MaintainUser;
+
 public class Design2 extends JFrame {
 
 	private JPanel mainScreen;
@@ -26,6 +28,7 @@ public class Design2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					MaintainUser.main(null);
 					//Design2 frame = new Design2();
 					frame.setVisible(true);
 				} catch (Exception e) {

@@ -1,6 +1,7 @@
 package Users;
 import Parking.*;
 import java.util.Date;
+import Utilities.*;
 
 import App.System1;
 
@@ -20,8 +21,8 @@ public class Client extends User {
 	 * @param licensePlate is a String corresponding to the license plate of the car of the client
 	 * @param booking is the Booking object corresponding to this Clients booked parking space
 	 */
-	public Client(String email, String password, Booking booking) {
-		super(email, password, "client");
+	public Client(String email, String password, Booking booking, String type) {
+		super(email, password, type);
 		this.booking = booking;
 		this.balance = 0.0;
 	}
@@ -74,12 +75,18 @@ public class Client extends User {
 		this.expiryDate = exp;
 	}
 	
-	public void addFunds(double money) {
-		this.balance += money;
+	public void addFunds(double money, String paymentType) {
+		paymentFactory factory = paymentFactory.getInstance();
+		PaymentMethod pm = factory.createPayment(paymentType);
+		pm.addToBalance(this, money);
 	}
 	
 	public void takeFunds(double money) {
 		this.balance -= money;
+	}
+	
+	public void increaseFunds(double money) {
+		this.balance += money;
 	}
 	
 	public void cancelBooking() {

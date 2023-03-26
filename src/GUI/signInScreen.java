@@ -99,37 +99,6 @@ public class signInScreen extends JFrame {
 						frame.setVisible(false);
 					}
 				}
-				/*if (System1.getAllUsers().size() != 0) {
-					
-					for (int i=0; i<System1.getAllUsers().size(); i++) {
-
-						if (System1.getAllUsers().get(i).getEmail().equals(email) &&
-							System1.getAllUsers().get(i).getPassword().equals(password)) {
-							//Set new screen
-							if (System1.getAllUsers().get(i) instanceof Manager) {
-								System1.currentUser = System1.getAllUsers().get(i);
-								ManagementScreen suc = ManagementScreen.getInstance();
-								suc.setVisible(true);
-								frame.setVisible(false);
-								break;
-							}
-							else {
-								System1.currentUser = System1.getAllUsers().get(i);
-								SignUpConfirmed suc = SignUpConfirmed.getInstance();
-								suc.setVisible(true);
-								frame.setVisible(false);
-								break;
-							}
-						}
-					}
-					if (System1.currentUser == null) {
-						lblWrongInfo.setText("Wrong Email Or Password!");
-				}
-					
-				}
-				else {
-					lblWrongInfo.setText("Wrong Email Or Password!");
-				}*/
 			}
 		});
 		btnSignIn.setBounds(161, 199, 117, 29);

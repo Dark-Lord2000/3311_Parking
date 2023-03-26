@@ -79,7 +79,7 @@ public class accountCreationScreen extends JFrame {
 		lblWhatAreYou.setBounds(25, 175, 96, 16);
 		accountCreationPanel.add(lblWhatAreYou);
 		
-		String[] options = {"Visitor", "Faculty", "Non-Faculty Staff", "Student", "Manager", "Super Manager"};
+		String[] options = {"Visitor", "Non-Faculty Staff", "Student", "Faculty", "Manager", "Super Manager"};
 		JComboBox<String> comboBox = new JComboBox<String>(options);
 		comboBox.setMaximumRowCount(4);
 		comboBox.setBounds(140, 171, 261, 27);
@@ -99,21 +99,40 @@ public class accountCreationScreen extends JFrame {
 					}
 					
 					else {
-				
-					
-					//Set new screen
-					if (type.equalsIgnoreCase("manager") || type.equalsIgnoreCase("super manager")) {
-						System1.currentUser = user;
-						ManagementScreen ms = ManagementScreen.getInstance();
-						ms.setVisible(true);
-						frame.setVisible(false);
-					}
-					else {
-						System1.currentUser = (Client) user;
-						SignUpConfirmed suc = SignUpConfirmed.getInstance();
-						suc.setVisible(true);
-						frame.setVisible(false);
-					}
+						//Set new screen
+						if (type.equalsIgnoreCase("manager") || type.equalsIgnoreCase("super manager")) {
+							System1.maintain.users.add(user);
+							try {System1.maintain.update("/Users/matt/eclipse-workspace/T007_project_deliverable_II/users.csv");
+							
+							} catch (Exception x) {
+								x.printStackTrace();
+							}
+							System1.currentUser = user;
+							ManagementScreen ms = ManagementScreen.getInstance();
+							ms.setVisible(true);
+							frame.setVisible(false);
+						}
+						else if (type.equalsIgnoreCase("student")){
+							System1.currentUser = (Client) user;
+							textField_password.setText("");
+							textField_email.setText("");
+							studentVerificationScreen svs = studentVerificationScreen.getInstance();
+							svs.setVisible(true);
+							frame.setVisible(false);
+						}
+						
+						else {
+							System1.maintain.users.add(user);
+							try {System1.maintain.update("/Users/matt/eclipse-workspace/T007_project_deliverable_II/users.csv");
+							
+							} catch (Exception x) {
+								x.printStackTrace();
+							}
+							System1.currentUser = (Client) user;
+							SignUpConfirmed suc = SignUpConfirmed.getInstance();
+							suc.setVisible(true);
+							frame.setVisible(false);
+						}
 					
 					}
 				

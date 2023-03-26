@@ -82,7 +82,7 @@ public class paypalScreen extends JFrame {
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client client = (Client) System1.currentUser;
-				client.addFunds(5.00);
+				client.addFunds(5.00, "paypal");
 				lblDisplay.setText("$5.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});
@@ -93,7 +93,7 @@ public class paypalScreen extends JFrame {
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client client = (Client) System1.currentUser;
-				client.addFunds(10.00);
+				client.addFunds(10.00, "paypal");
 				lblDisplay.setText("$10.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});
@@ -104,7 +104,7 @@ public class paypalScreen extends JFrame {
 		btn20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Client client = (Client) System1.currentUser;
-				client.addFunds(20.00);
+				client.addFunds(20.00, "paypal");
 				lblDisplay.setText("$20.00 Added! Current Balance: $" + String.format("%.2f", client.getBalance()));
 			}
 		});

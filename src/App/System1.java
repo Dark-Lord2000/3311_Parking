@@ -17,7 +17,7 @@ public class System1 {
 	private static List<ParkingSpace> allSpaces = new ArrayList<>();
 	//private static List<ParkingSpace> allOccupiedSpaces = new ArrayList<>();
 	public static User currentUser;
-	public static MaintainUser maintainUsers = new MaintainUser();
+	public static MaintainUser maintain = new MaintainUser();
 	
 	private static Map<ParkingLot, List<ParkingSpace>> c;
 	

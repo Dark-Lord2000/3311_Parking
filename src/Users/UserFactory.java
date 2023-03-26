@@ -32,7 +32,7 @@ public class UserFactory {
 				  User staff = new NonFacultyStaff(email, password, null);
 				    return staff;
 			  case "student":
-				  User student = new Faculty(email, password, null);
+				  User student = new Student(email, password, null);
 				  return student;
 			  case "super manager":
 				  User sm = new SuperManager(email, password);

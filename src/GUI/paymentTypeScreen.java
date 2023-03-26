@@ -56,10 +56,10 @@ public class paymentTypeScreen extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		btnPaypal.setBounds(160, 84, 117, 29);
+		btnPaypal.setBounds(160, 84, 117, 52);
 		contentPane.add(btnPaypal);
 		
-		JButton btnDebit = new JButton("Debit");
+		JButton btnDebit = new JButton("Debit/Credit");
 		btnDebit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addFundsScreen afs = addFundsScreen.getInstance();
@@ -67,23 +67,8 @@ public class paymentTypeScreen extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		btnDebit.setBounds(160, 124, 117, 29);
+		btnDebit.setBounds(160, 148, 117, 46);
 		contentPane.add(btnDebit);
-		
-		JButton btnCredit = new JButton("Credit");
-		btnCredit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addFundsScreen afs = addFundsScreen.getInstance();
-				afs.setVisible(true);
-				frame.setVisible(false);
-			}
-		});
-		btnCredit.setBounds(160, 165, 117, 29);
-		contentPane.add(btnCredit);
-		
-		JButton btnMobile = new JButton("Mobile");
-		btnMobile.setBounds(160, 206, 117, 29);
-		contentPane.add(btnMobile);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
