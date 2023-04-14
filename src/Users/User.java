@@ -18,6 +18,12 @@ public class User {
 		this.password = password;
 		this.type = type;
 		System1.addUser(this);
+		System1.maintain.users.add(this);
+		try {System1.maintain.update("/Users/matt/eclipse-workspace/T007_project_deliverable_II/users.csv");
+		
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
 	}
 	
 	/**
